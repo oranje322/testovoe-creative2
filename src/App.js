@@ -1,25 +1,25 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getData} from "./redux/reducers/rootReducer";
+import FlatCard from "./components/FlatCard";
 
-function App() {
+const App = () => {
+
+    useEffect(() => {
+        dispatch(getData())
+    }, [])
+
+    const dispatch = useDispatch()
+    const flats = useSelector(state => state.rootReducer.flats)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+      <div className={'container'}>
+          {
+              flats.map((flat, index) => <FlatCard flat={flat} key={index} />)
+          }
+      </div>
+  )
 }
 
 export default App;
