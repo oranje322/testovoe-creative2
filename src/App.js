@@ -5,7 +5,7 @@ import {getData} from "./redux/reducers/rootReducer";
 import FlatCard from "./components/FlatCard";
 
 const App = () => {
-
+ //получение данных
     useEffect(() => {
         dispatch(getData())
     }, [])
